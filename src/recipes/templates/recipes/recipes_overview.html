@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipes Overview</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="nav-bar">
+    <a href="{%url 'recipes:about' %}" class="nav-bar-item">About</a>
+    <a href="{%url 'recipes:list' %}" class="nav-bar-item active">All Recipes</a>
+    <span id="openAddRecipeBtn" class="nav-bar-item" >Add Recipe</span>
+    <a href ="{%url 'success' %}" class="nav-bar-item">Logout</a>
+    <!-- <a href ="{%url 'recipes:add_recipe' %}" class="nav-bar-item">Add Recipe</a> -->
+    <!-- <button type="button" class="btn nav-bar-item" id="openAddRecipeBtn">Add Recipe</button> -->
+
+  </div>
+  <!-- chart & modal control buttons -->
+  <div class="control-container">
+    <img src="{% static 'images/graph_up_icon.png' %}" alt="graph_up_icon" onclick="showHideAnalytics()" id="analytics_control" >
+    <span class="helper-text">data stats</span>
+  </div>
+  <!-- chart container -->
+  <div id="analytics_container"  style="display: none;">
+    <h2 class="page-header" >Recipe Analytics</h2>
+    <div class="chart-container">
+      <img src="data:image/png;base64, {{top_ing_chart|safe}}" alt="" class="analytics-chart">
+      <img src="data:image/png;base64, {{difficulty_spread_chart|safe}}" alt="" class="analytics-chart">
+      <img src="data:image/png;base64, {{difficulty_and_time_chart|safe}}" alt="" class="analytics-chart">
+    </div>
+  </div>
+  <!-- add recipe form modal -->
+  <div class="modal" id="addRecipeModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="add_recipe_modal_title">Add a New Recipe</h3>
+          <span class="close"  id="closeAddRecipeModal">&times;</span>
+        </div>
+        <div class="modal-body">
+          <!-- Form with POST method -->
+          <form method="POST" action="{% url 'recipes:add_recipe' %}" id="recipeForm" data-post-url="{% url 'recipes:add_recipe' %}" >
+            {% csrf_token %} 
+            <div class="add-recipe-name-holder">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="add-recipe-ingredients-holder">
+              <label for="ingredients">Ingredients (comma-separated):</label>
+              <input type="text" id="ingredients" name="ingredients" required>
+            </div>          
+            <div class="add-recipe-cookingtime-holder">
+              <label for="cooking_time">Cooking Time (in minutes):</label>
+              <input type="number" id="cooking_time" name="cooking_time" required>
+            </div>
+            <div class="add-recipe-picture-holder">
+              <label for="pic">Picture:</label>
+              <input type="file" id="pic" name="pic" accept="image/*">
+            </div>
+            <button type="submit" class="btn" id="saveRecipeBtn">Save Recipe</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+    
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- recipe search form -->
+  <div id="search_form_container">
+    <h2 class="page-header" style="display: block;" >Search for recipes</h2>
+    <hr>
+    <form action="" method="GET" id="search_form">
+      {{search_form}}
+      <button type="submit" >search</button>
+    </form>
+  </div>
+  <!--recipes displayed as a list -->
+  <h2 class="page-header">{{ main_title }}</h2>
+    {% if search_details %}
+    <h3 class="search-details">{{ search_details }}</h3>
+    {% endif %}
+
+  <div class="main-container">
+    {% for object in object_list %}
+    <div class="grid_item">
+      <img src="{{object.pic_url}}" alt="recipe_image" id="recipe_image">
+      <h2> <a href ="{{object.get_absolute_url}}" class="recipe-label"> {{object.name}}</a></h2>
+    </div>
+    {% endfor %}
+  </div>
+  <!-- external JS logic -->
+  <script src="{% static 'js/script.js' %}" ></script>
+
+
+</body>
+</html>

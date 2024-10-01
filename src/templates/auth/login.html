@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <title>Login</title>
+  <style>
+    * { box-sizing: border-box;}
+    body{background-color: rgb(239, 240, 240); font-family: "PT Sans", sans-serif;}
+    a {text-decoration: none; font-size: 1em;}
+    .main-container { margin: auto; width: 25%; height: 20em; border: solid 5px; border-color: #e2e7e4;border-radius: 5px; padding:20px; margin-top: 10%;}
+    button { background-color: #6b6b6b; border: none; border-radius: 5px; color: white; text-align: center; text-decoration: none; font-size: 16px; padding:15px 32px; margin-top: 10px;}
+    button:hover {background-color: #4d4d4d;}
+    .login-form {display: flex; flex-direction: column;}
+
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <h1>Login</h1>
+    {% if error_message %}
+      {{error_message}}
+    {% endif %}
+    <form action="" method="POST" class="login-form">
+      {% csrf_token %}
+
+      {{form}}
+      <button type="submit">Login</button>
+    </form>
+    
+  </div>
+</body>
+</html>

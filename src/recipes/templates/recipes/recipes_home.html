@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Info</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="{%url 'recipes:about' %}" class="nav-bar-item active">About</a>
+        <a href ="{%url 'login' %}" class="nav-bar-item">Login</a>
+    </div>
+    <div class="about-main-container">
+        <div class="about-app-header">
+            <h1>RECIPE APP</h1>
+        </div>
+        <div class="welcome-image-container">
+            <img src="{% static 'images/landing_page_image.jpg' %}" alt="welcome-image" width="100%" height="auto">
+        </div>
+        <div class="about-app-intro">
+            <h2 style="padding: 10px;">About the App</h2>
+            <p style="padding: 10px;">This project is part of careerFoundry's Python for Web Developers Specialization course. The main goal is to use the Django framework to develop a web application with multiple users and an admin panel.</p>
+            <p style="padding: 10px;">This app specifically is a Recipe web app which can create, read, and modify recipes, as well as search for recipes by ingredients. It also includes an admin panel on the backend for data handling and visualization.</p>
+        </div>
+        <div class="app-info-container">
+            <h2 style="padding: 5px;">Key Features</h2>
+            <ul class="app-info-points">
+                <li>allows for user authentication, login, logout</li>
+                <li>users can search for recipes by ingredients</li>
+                <li>each recipe is automatically rated by difficulty level</li>
+                <li>more recipe details displayed per user request</li>
+                <li>app receives user input and handles errors effectively</li>
+                <li>user-added recipes sorted in a SQLite3 database</li>
+                <li>Django Admin dashboard included</li>
+                <li>shows statistics and visualizations based on trends and data analysis</li>
+            </ul>
+        </div>
+        <div class="about-me-container" >
+            <div class="about-me-header">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-me-body">
+                <p style="font-size: 25px; align-self: center;">I'm Maria, </p>
+                <p>But most people know me as Masha. I'm fresh to web development, coming from an arts and fitness coaching background, I am excited for a new challenge and a start in a different industry. Having completed careerFoundry's Full Stack Web Development program I found myself drawn to the front-end side of the process. It felt like a natural transition, a space to combine new programming skills with pre-existing art and design knowledge.</p>
+                <p>I love the problem-solving nature of development - it's both humbling and refreshing. There is always a new task to tackle, and it is a constant reminder to look at a problem from a different perspective, try a different path.</p>
+                <p>When I'm away from the keyboard I spend most of my time either drawing or training Muay Thai. Both are great passions of mine. Both fulfill that need for fresh knowledge that has driven me forward my whole life. Just like programming, I see both as crafts, as something I can spend a lifetime learning and sharpening. And that, in my opinion, is a life well-lived.</p>
+            </div>
+            <div class="about-me-footer">
+                <a href="https://kurenkov004.github.io/MK_Portfolio_Site/work.html" class="btn" target="_blank">Portfolio</a>
+                <a href="https://github.com/kurenkov004" class="btn" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/maria-kurenkova-90b75013a" class="btn" target="_blank">LinkedIn</a>
+
+            </div>
+            
+        </div>     
+    </div>
+</body>
+</html>

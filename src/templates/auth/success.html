@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <title>Logout</title>
+  <style>
+    * { box-sizing: border-box;}
+    body{background-color: rgb(239, 240, 240); font-family: "PT Sans", sans-serif;}
+    a {text-decoration: none; font-size: 1em;}
+    .main-container { margin: auto; width: 25%; height: 15em; border: solid 5px; border-color: #e2e7e4;border-radius: 5px; padding:20px; margin-top: 10%; text-align: center;}
+    .log-back-button {display: block;  background-color: #6b6b6b; border: none; border-radius: 5px; color: white; text-align: center; text-decoration: none; font-size: 16px; padding:15px 32px; margin-top: 10px;}
+    .log-back-button:hover {background-color: #4d4d4d;}
+
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <h1>Thanks for visiting the Recipe App!</h1>
+    <a href ="{%url 'login' %}" class="log-back-button"> Log back in </a>
+    <a href ="{%url 'recipes:about' %}" class="log-back-button"> Read about the app </a>
+  </div>
+</body>
+</html>

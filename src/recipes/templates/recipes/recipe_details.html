@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe details</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="nav-bar">
+    <a href="{%url 'recipes:about' %}" class="nav-bar-item">About</a>
+    <a href="{%url 'recipes:list' %}" class="nav-bar-item">All Recipes</a>
+    <a href ="{%url 'success' %}" class="nav-bar-item">Logout</a>
+  </div>
+  <div class="details-page-header">
+    <h1>{{object.name}}</h1>
+  </div>
+  <div class="details-container">
+    <img src="{{object.pic.url}}" alt="recipe_image" id="details_recipe_image">
+    <div class="details-recipe-info">
+      <h2>Cooking time (in minutes):</h2>
+      <p>{{object.cooking_time}}</p> 
+      <h2>Difficulty: </h2>
+      <p>{{object.difficulty}} </p> 
+      <h2>Ingredients: </h2> 
+      <p>{{object.ingredients}}</p>
+      <a href ="{%url 'recipes:list' %}" class="back-button"> Back </a>
+      <button type="button" id="openUpdateModalButn" class="back-button">Edit Recipe</button>
+      <button type="button" id="deleteRecipeButton" class="delete-button" data-recipe-id="{{ object.id }}">Delete Recipe</button>
+    </div>
+  </div>
+  <!-- update recipe modal -->
+  <div id="updateRecipeModal" class="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <span id="closeUpdateModal" class="close">&times;</span>
+        <h3>Update recipe:</h3>
+        <div class="modal-body">
+          <form action="{% url 'recipes:update_recipe' object.id %}" id="updateRecipeForm" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="edit-recipe-name-holder">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="edit-recipe-ingredients-holder">
+              <label for="ingredients">Ingredients (comma-separated):</label>
+              <input type="text" id="ingredients" name="ingredients" required>
+            </div>          
+            <div class="edit-recipe-cookingtime-holder">
+              <label for="cooking_time">Cooking Time (in minutes):</label>
+              <input type="number" id="cooking_time" name="cooking_time" required>
+            </div>
+            <div class="edit-recipe-picture-holder">
+              <label for="pic">Picture:</label>
+              <input type="file" id="pic" name="pic" accept="image/*">
+            </div>
+            <button type="submit" class="btn">Update Recipe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  <!-- confirm delete modal -->
+  <div id="delete_recipe_modal" class="modal" >
+    <div class="modal-content">
+      <span class="close" id="closeDeleteModal">&times;</span>
+      <h3>Are you sure? This action cannnot be undone.</h3>
+      <div class="confirm-btn-holder">
+        <button type="button" id="confirmDeleteButton" class="delete-button">Confirm Delete</button>
+      </div>
+
+    </div>
+  </div>
+  <!-- external JS -->
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
